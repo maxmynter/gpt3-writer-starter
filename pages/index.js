@@ -1,10 +1,14 @@
 import { useState } from "react";
+import UserTextInput from "./components/userInput";
 import Head from "next/head";
 import Image from "next/image";
 import buildspaceLogo from "../assets/buildspace-logo.png";
 
 const Home = () => {
-  const [userInput, setUserInput] = useState("");
+  const [nameAndRole, setnameAndRole] = useState("");
+  const [companyName, setcCmpanyName] = useState("");
+  const [mission, setMission] = useState("");
+  const [candidateSummary, setCandidateSummary] = useState("");
   const [apiOutput, setApiOutput] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
 
@@ -27,9 +31,8 @@ const Home = () => {
     setApiOutput(`${output.text}`);
     setIsGenerating(false);
   };
-  const onUserChangedText = (event) => {
-    console.log(event.target.value);
-    setUserInput(event.target.value);
+  const onUserChangedText = (event, setFunction) => {
+    setFunction(event.target.value);
   };
 
   return (
@@ -44,11 +47,31 @@ const Home = () => {
           </div>
         </div>
         <div className="prompt-container">
-          <textarea
-            placeholder="start typing here"
-            className="prompt-box"
-            value={userInput}
-            onChange={onUserChangedText}
+          <UserTextInput
+            textInput={nameAndRole}
+            onUserChangedText={(event) =>
+              onUserChangedText(event, setnameAndRole)
+            }
+            placeholder="Your Name and role"
+          />
+          <UserTextInput
+            textInput={companyName}
+            onUserChangedText={(event) =>
+              onUserChangedText(event, setcCmpanyName)
+            }
+            placeholder="Your company name"
+          />
+          <UserTextInput
+            textInput={mission}
+            onUserChangedText={(event) => onUserChangedText(event, setMission)}
+            placeholder="Your company mission"
+          />
+          <UserTextInput
+            textInput={candidateSummary}
+            onUserChangedText={(event) =>
+              onUserChangedText(event, setCandidateSummary)
+            }
+            placeholder="Candidate Summary"
           />
           <div className="prompt-buttons">
             <a

@@ -1,14 +1,10 @@
 import { useState } from "react";
-import UserTextInput from "./components/userInput";
+import UserInputForm from "./components/userInputForm";
 import Head from "next/head";
 import Image from "next/image";
 import buildspaceLogo from "../assets/buildspace-logo.png";
 
 const Home = () => {
-  const [nameAndRole, setnameAndRole] = useState("");
-  const [companyName, setcCmpanyName] = useState("");
-  const [mission, setMission] = useState("");
-  const [candidateSummary, setCandidateSummary] = useState("");
   const [apiOutput, setApiOutput] = useState("");
   const [isGenerating, setIsGenerating] = useState(false);
 
@@ -31,9 +27,6 @@ const Home = () => {
     setApiOutput(`${output.text}`);
     setIsGenerating(false);
   };
-  const onUserChangedText = (event, setFunction) => {
-    setFunction(event.target.value);
-  };
 
   return (
     <div className="root">
@@ -47,32 +40,7 @@ const Home = () => {
           </div>
         </div>
         <div className="prompt-container">
-          <UserTextInput
-            textInput={nameAndRole}
-            onUserChangedText={(event) =>
-              onUserChangedText(event, setnameAndRole)
-            }
-            placeholder="Your Name and role"
-          />
-          <UserTextInput
-            textInput={companyName}
-            onUserChangedText={(event) =>
-              onUserChangedText(event, setcCmpanyName)
-            }
-            placeholder="Your company name"
-          />
-          <UserTextInput
-            textInput={mission}
-            onUserChangedText={(event) => onUserChangedText(event, setMission)}
-            placeholder="Your company mission"
-          />
-          <UserTextInput
-            textInput={candidateSummary}
-            onUserChangedText={(event) =>
-              onUserChangedText(event, setCandidateSummary)
-            }
-            placeholder="Candidate Summary"
-          />
+          <UserInputForm />
           <div className="prompt-buttons">
             <a
               className={

@@ -73,6 +73,7 @@ const UserInputForm = () => {
           onUserChangedText={(event) => onUserChangedText(event, setJobSummary)}
           placeholder="Job Summary"
           title="Job"
+          instructions="Bullets are sufficient."
         />
         <UserTextInput
           textInput={candidateSummary}
@@ -80,7 +81,8 @@ const UserInputForm = () => {
             onUserChangedText(event, setCandidateSummary)
           }
           placeholder="Candidate Summary"
-          title="Candidate CV (Just type bullets)"
+          title="Candidate CV"
+          instructions="Bullets are sufficient. Seperate entries by commas or new lines."
         />
         <div className="prompt-buttons">
           <a

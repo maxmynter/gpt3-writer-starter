@@ -1,11 +1,20 @@
-const UserTextInput = ({ textInput, onUserChangedText, placeholder }) => {
+const UserTextInput = ({
+  textInput,
+  onUserChangedText,
+  placeholder,
+  title,
+  small,
+}) => {
   return (
-    <textarea
-      placeholder={placeholder}
-      className="prompt-box"
-      value={textInput}
-      onChange={onUserChangedText}
-    />
+    <>
+      <p className="prompt-box-title">{title}</p>
+      <textarea
+        placeholder={placeholder}
+        className={small ? "prompt-box-small" : "prompt-box"}
+        value={textInput}
+        onChange={onUserChangedText}
+      />
+    </>
   );
 };
 

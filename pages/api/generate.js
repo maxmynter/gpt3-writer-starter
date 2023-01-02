@@ -8,14 +8,35 @@ const openai = new OpenAIApi(configuration);
 
 const basePromptPrefix = "";
 const generateAction = async (req, res) => {
+  const userInput =
+    req.body.nameAndRole +
+    " " +
+    req.body.companyName +
+    " " +
+    req.body.mission +
+    " " +
+    req.body.jobSummary +
+    " " +
+    req.body.candidateSummary;
   // Run first prompt
-  console.log(`API: ${basePromptPrefix}${req.body.userInput}`);
+
+  // Can use prompt chaining to first select best experience from linkedIn profile and then write the Outreach
+
+  const prompt = `Write a convincing and short recruiting linkedIn message for me and my company to hire a candidate. The message should briefly describe the role, mention the candidates experience and their potential impact in the new role
+    Company Name: ${req.body.companyName}
+    Company Mission: ${req.body.mission}
+    Candidate: ${req.body.candidateSummary}
+    Job: ${req.body.jobSummary}
+    Sender: ${req.body.nameAndRole}
+    
+    Message:\n`;
+  console.log(`API: ${userInput}`);
 
   const baseCompletion = await openai.createCompletion({
     model: "text-davinci-003",
-    prompt: `${basePromptPrefix}${req.body.userInput}`,
-    temperature: 0.7,
-    max_tokens: 250,
+    prompt: `${prompt}`,
+    temperature: 0.83,
+    max_tokens: 200,
   });
 
   const basePromptOutput = baseCompletion.data.choices.pop();

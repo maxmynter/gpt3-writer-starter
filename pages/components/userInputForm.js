@@ -80,7 +80,7 @@ const UserInputForm = () => {
             onUserChangedText(event, setCandidateSummary)
           }
           placeholder="Candidate Summary"
-          title="Candidate CV"
+          title="Candidate CV (Just type bullets)"
         />
         <div className="prompt-buttons">
           <a

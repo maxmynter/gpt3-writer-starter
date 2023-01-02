@@ -4,6 +4,8 @@ const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 });
 
+const styleTextforInput = () => {};
+
 const openai = new OpenAIApi(configuration);
 
 const basePromptPrefix = "";
@@ -23,11 +25,11 @@ const generateAction = async (req, res) => {
   // Can use prompt chaining to first select best experience from linkedIn profile and then write the Outreach
 
   const prompt = `Write a convincing and short recruiting linkedIn message for me and my company to hire a candidate. The message should briefly describe the role, mention the candidates experience and their potential impact in the new role
-    Company Name: ${req.body.companyName}
-    Company Mission: ${req.body.mission}
-    Candidate: ${req.body.candidateSummary}
-    Job: ${req.body.jobSummary}
-    Sender: ${req.body.nameAndRole}
+    Company Name: ${req.body.companyName.replaceAll("\n", ",")}
+    Company Mission: ${req.body.mission.replaceAll("\n", ",")}
+    Candidate: ${req.body.candidateSummary.replaceAll("\n", ",")}
+    Job: ${req.body.jobSummary.replaceAll("\n", ",")}
+    Sender: ${req.body.nameAndRole.replaceAll("\n", ",")}
     
     Message:\n`;
   console.log(`API: ${userInput}`);

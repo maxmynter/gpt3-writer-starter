@@ -82,7 +82,7 @@ const UserInputForm = () => {
           }
           placeholder="Candidate Summary"
           title="Candidate CV"
-          instructions="Bullets are sufficient. Seperate entries by commas or new lines."
+          instructions="Bullets are sufficient. Seperate entries by commas or new lines. Don't forget the candidates name."
         />
         <div className="prompt-buttons">
           <a

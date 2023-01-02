@@ -1,6 +1,4 @@
 import UserInputForm from "./components/userInputForm";
-import Image from "next/image";
-import buildspaceLogo from "../assets/buildspace-logo.png";
 
 const Home = () => {
   return (
